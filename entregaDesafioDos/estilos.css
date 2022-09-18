@@ -1,0 +1,23 @@
+body{
+    background-color: rgb(238, 238, 240);
+}
+.titulos{    
+    text-align: center;
+    color: rgb(20, 20, 20); 
+    margin-bottom: 3rem;
+    margin-top: 2rem;   
+}
+.productosEstilos{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);  
+}
+.card{
+    margin: 1rem auto;    
+}
+.footer{
+    background-color: green;       
+}
+.footer p{
+    color: aliceblue;
+    text-align: center;
+}

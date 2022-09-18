@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./estilos.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">    
+    <title>Ludomania</title>
+</head>
+<body>
+    <nav class="navbar bg-secondary">
+            <div class="container-fluid justify-content-around">
+              <form class="d-flex" role="search">
+                <input id="filtrarTipo" class="form-control me-2" type="Filtrar" placeholder="Tipo de producto" aria-label="">
+                <button id="btnFiltrar"  type="button" class="btn btn-success">Filtrar</button>                
+              </form>
+              <form class="d-flex" role="search">
+                <input id="buscarProducto" class="form-control me-2" type="Filtrar" placeholder="Nombre Producto" aria-label="">
+                <button id="btnBuscar" type="button" class="btn btn-success">Buscar</button>           
+              </form>
+              <div>
+                <button id="mostrarStock" type="button" class="btn btn-success">Mostrar Stock</button>    
+              </div>
+              <div>
+                <button type="button" class="btn btn-success">Agregar Producto</button>
+              </div>
+              <div>
+                <button type="button" class="btn btn-outline-success"><img src="./img/car.ico" alt="Carrito de compra"></button>                    
+              </div>
+            </div>
+    </nav>
+
+    <Main>
+        <div class="titulos">
+            <h1>Bienvenidos a Ludomania</h1>
+            <h2>Tu tienda de juegos para el Hogar</h2>
+        </div>
+        <div id="productos" class="productosEstilos container-fluid"></div>        
+    </Main>    
+    
+<script src="./productos.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="container-fluid">
+            <div class="card bg-secondary text-white" style="width: 18rem;">
+                <img src="./img/batallanaval.jpg" class="card-img-top border" alt="Batalla Naval">
+                <div class="card-body">
+                  <h5 class="card-title">Producto</h5>
+                  <p class="card-text">Tipo Producto</p>
+                  <p class="card-text">Precio</p>
+                  <a href="#" class="btn btn-success">Comprar</a>
+                </div>
+              </div>
+        </div>-->
