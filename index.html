@@ -1,47 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./estilos.css">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">    
-    <title>Ludomania</title>
-</head>
-<body>
-    <nav class="navbar bg-secondary">
-            <div class="container-fluid justify-content-around">
-              <form class="d-flex" role="search">
-                <input id="filtrarTipo" class="form-control me-2" type="Filtrar" placeholder="Tipo de producto" aria-label="">
-                <button id="btnFiltrar"  type="button" class="btn btn-success">Filtrar</button>                
-              </form>
-              <form class="d-flex" role="search">
-                <input id="buscarProducto" class="form-control me-2" type="Filtrar" placeholder="Nombre Producto" aria-label="">
-                <button id="btnBuscar" type="button" class="btn btn-success">Buscar</button>           
-              </form>
-              <div>
-                <button id="mostrarStock" type="button" class="btn btn-success">Mostrar Stock</button>    
-              </div>
-              <div>
-                <button type="button" class="btn btn-success">Agregar Producto</button>
-              </div>
-              <div>
-                <button type="button" class="btn btn-outline-success"><img src="./img/car.ico" alt="Carrito de compra"></button>                    
-              </div>
-            </div>
-    </nav>
 
-    <Main>
-        <div class="titulos">
-            <h1>Bienvenidos a Ludomania</h1>
-            <h2>Tu tienda de juegos para el Hogar</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./estilos.css">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <title>Ludomania</title>
+</head>
+
+<body>
+  <nav class="navbar bg-secondary">
+    <div class="container-fluid justify-content-around">
+      <form class="d-flex" role="search">
+        <input id="filtrarTipo" class="form-control me-2" type="Filtrar" placeholder="Tipo de producto" aria-label="">
+        <button id="btnFiltrar" type="button" class="btn btn-success">Filtrar</button>
+      </form>
+      <form class="d-flex" role="search">
+        <input id="buscarProducto" class="form-control me-2" type="Filtrar" placeholder="Nombre Producto" aria-label="">
+        <button id="btnBuscar" type="button" class="btn btn-success">Buscar</button>
+      </form>
+      <div>
+        <button id="mostrarStock" type="button" class="btn btn-success">Mostrar Stock</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-success">Agregar Producto</button>
+      </div>
+      <!-- Boton para abrir el modal -->
+      <button type="button" id="btnCar" class="btn btn-outline-success" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        <img src="./img/car.ico" alt="carrito de compra">
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- HEADER MODAL -->
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tu pedido es:</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- BODY MODAL -->
+            <div class="modal-body" id="modalBody">
+              
+            </div>
+            <div class="row m-1 font-monospace fw-bold">
+              <p id="pay"></p>
+            </div>            
+            <!-- FOOTER MODAL -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button id="btnBuy" type="button" class="btn btn-success">Comprar</button>
+            </div>
+
+          </div>
         </div>
-        <div id="productos" class="productosEstilos container-fluid"></div>        
-    </Main>    
-    
-<script src="./productos.js"></script>
-  </body>
+      </div>
+    </div>
+
+  </nav>
+
+  <Main>
+    <div class="titulos">
+      <h1>Bienvenidos a Ludomania</h1>
+      <h2>Tu tienda de juegos para el Hogar</h2>
+    </div>
+    <div id="productos" class="productosEstilos container-fluid"></div>
+  </Main>
+
+  <script src="./productos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
 
 

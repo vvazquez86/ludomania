@@ -33,41 +33,47 @@ const producto7 = new Producto(7, "Batalla Naval", "Juego de mesa", 8500, "batal
 
 const listaProductos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7]
 
+
 //Funciones:
 
 //FUNCION MOSTRAR STOCK:
-
+let carritoArray = []
 let divProductos = document.getElementById("productos")
 
 function mostrarStock(array) {
     divProductos.innerHTML = ""
     array.forEach((producto) => {
         let nuevoProducto = document.createElement("div")
-        nuevoProducto.innerHTML = `<div id="${producto.id}" class="card bg-secondary text-white" style="width: 18rem;">
+        nuevoProducto.innerHTML = `<div id="${producto.id}" class="card bg-secondary text-white btnComprar" style="width: 18rem;">
                                         <img src="img/${producto.img}" class="card-img-top border" alt="${producto.nombre}">
                                         <div class="card-body">
                                           <h5 class="card-title">${producto.nombre}</h5>
                                           <p class="card-text">Tipo: ${producto.tipo}</p>
                                           <p class="card-text">Precio: $${producto.precio}</p>
-                                          <a href="#" class="btn btn-success">Comprar</a>
+                                          <button id="btnComprar${producto.id}" class="btn btn-success btnComprar">Agregar al carrito</button>
                                         </div>
                                     </div>`
         divProductos.append(nuevoProducto)
-    })
-    let btnCompra = document.getElementsByClassName("btnComprar")
-    for (let compra of btnCompra) {
-        compra.addEventListener("click", () => {
-            alert("El producto ha sido comprado")
+        let btnComprar = document.getElementById(`btnComprar${producto.id}`)
+        btnComprar.addEventListener("click", () => {
+            agregarAlCarrito(producto)
+            alert("Producto agregado al carrito")
         })
-    }
+    })
 }
+
+function agregarAlCarrito(prod) {
+    carritoArray.push(prod)
+    console.log(carritoArray)
+}
+
 
 //FUNCION BUSCAR POR NOMBRE
 
 let productoBuscado = document.getElementById("buscarProducto")
 
-function buscarProducto() {    
-    let productoEncontrado = listaProductos.filter((producto) => producto.nombre.toLowerCase().includes(productoBuscado.value.toLowerCase()))    
+function buscarProducto() {
+    let productoEncontrado = listaProductos.filter((producto) => producto.nombre.toLowerCase().includes(productoBuscado.value.toLowerCase()))
     if (productoEncontrado.length == 0) {
         alert("Producto no encontrado")
         productoBuscado.value = ""
@@ -97,16 +103,57 @@ btnMostrarStock.addEventListener("click", () => {
 
 //BOTON BUSCAR POR NOMBRE
 let btnBuscarPorNombre = document.getElementById("btnBuscar")
-btnBuscarPorNombre.addEventListener("click", () => {    
+btnBuscarPorNombre.addEventListener("click", () => {
     buscarProducto()
-    productoBuscado.value=""    
+    productoBuscado.value = ""
 })
 
 //BOTON FILTRA POR TIPO
 let btnFiltrarPorTipo = document.getElementById("btnFiltrar")
-btnFiltrarPorTipo.addEventListener("click", ()=>{
+btnFiltrarPorTipo.addEventListener("click", () => {
     filtrarPorTipo()
     filtrarTipo.value = ""
 })
 
+//DOM CARRITO
 
+let btnCarrito = document.getElementById("btnCar")
+let modalBody = document.getElementById("modalBody")
+let btnComprar = document.getElementById("btnBuy")
+let parrafoCompra = document.getElementById("pay")
+
+btnCarrito.addEventListener("click", ()=>{
+    cargarCarrito(carritoArray)
+})
+
+function cargarCarrito(array) {
+    modalBody.innerHTML = ""
+    array.forEach((productoCarrito) => {
+        modalBody.innerHTML += `
+                <div class="card">
+                    <div class="card-header">
+                        Producto
+                    </div>
+                    <div class="card-body">
+                         <h5 class="card-title">${productoCarrito.nombre}</h5>
+                         <p id="pay" class="card-text">Precio $${productoCarrito.precio}</p>
+                         <a href="#" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+        `
+    })
+    //Calcular el total
+    totalProductos(array)
+}
+function totalProductos (array){
+    let acumulador = 0
+    acumulador = array.reduce((acumulador, carritoArray)=>{
+        return acumulador + carritoArray.precio
+    },0)
+    //console.log(`El total hasta ahora es: $${acumulador}`)
+    if(acumulador == 0){
+        parrafoCompra.innerHTML = "No hay productos en el carrito"
+    }else{
+        parrafoCompra.innerHTML = `El total de su carrito es $${acumulador}`
+    }    
+}
