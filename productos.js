@@ -38,6 +38,11 @@ const listaProductos = [producto1, producto2, producto3, producto4, producto5, p
 
 //FUNCION MOSTRAR STOCK:
 let carritoArray = []
+if (localStorage.getItem('carrito')){
+    console.log("a ver que pasa papa")
+    carritoArray = JSON.parse(localStorage.getItem('carrito'))
+}
+
 let divProductos = document.getElementById("productos")
 
 function mostrarStock(array) {
@@ -54,19 +59,23 @@ function mostrarStock(array) {
                                         </div>
                                     </div>`
         divProductos.append(nuevoProducto)
+        //Boton para agregar producto al carrito
         let btnComprar = document.getElementById(`btnComprar${producto.id}`)
         btnComprar.addEventListener("click", () => {
             agregarAlCarrito(producto)
             alert("Producto agregado al carrito")
-        })
+        })        
     })
 }
-
-function agregarAlCarrito(prod) {
+function agregarAlCarrito(prod) {        
     carritoArray.push(prod)
-    console.log(carritoArray)
+    //Aca estamos acualizando el storage despues de que el carrito fuese pusheado
+    localStorage.setItem('carrito', JSON.stringify(carritoArray))                  
 }
 
+localStorage.setItem('carrito', JSON.stringify(carritoArray)) 
+
+//<script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
 
 //FUNCION BUSCAR POR NOMBRE
 
@@ -121,9 +130,12 @@ let btnCarrito = document.getElementById("btnCar")
 let modalBody = document.getElementById("modalBody")
 let btnComprar = document.getElementById("btnBuy")
 let parrafoCompra = document.getElementById("pay")
+let carritoEnJSON =[]
 
-btnCarrito.addEventListener("click", ()=>{
-    cargarCarrito(carritoArray)
+btnCarrito.addEventListener("click", ()=>{        
+    localStorage.setItem('carrito', JSON.stringify(carritoArray)) 
+    carritoEnJSON = JSON.parse(localStorage.getItem('carrito')) 
+    cargarCarrito(carritoEnJSON)     
 })
 
 function cargarCarrito(array) {
@@ -142,9 +154,11 @@ function cargarCarrito(array) {
                 </div>
         `
     })
+    //localStorage.setItem('carrito', JSON.stringify(array))
     //Calcular el total
     totalProductos(array)
 }
+
 function totalProductos (array){
     let acumulador = 0
     acumulador = array.reduce((acumulador, carritoArray)=>{
