@@ -38,10 +38,7 @@ const listaProductos = [producto1, producto2, producto3, producto4, producto5, p
 
 //FUNCION MOSTRAR STOCK:
 let carritoArray = []
-if (localStorage.getItem('carrito')){
-    console.log("a ver que pasa papa")
-    carritoArray = JSON.parse(localStorage.getItem('carrito'))
-}
+localStorage.getItem('carrito') ? carritoArray = JSON.parse(localStorage.getItem('carrito')) : carritoArray = []
 
 let divProductos = document.getElementById("productos")
 
@@ -60,7 +57,7 @@ function mostrarStock(array) {
                                     </div>`
         divProductos.append(nuevoProducto)
         //Boton para agregar producto al carrito
-        let btnComprar = document.getElementById(`btnComprar${producto.id}`)
+        const btnComprar = document.getElementById(`btnComprar${producto.id}`)
         btnComprar.addEventListener("click", () => {
             agregarAlCarrito(producto)
             alert("Producto agregado al carrito")
@@ -79,57 +76,51 @@ localStorage.setItem('carrito', JSON.stringify(carritoArray))
 
 //FUNCION BUSCAR POR NOMBRE
 
-let productoBuscado = document.getElementById("buscarProducto")
+const productoBuscado = document.getElementById("buscarProducto")
 
 function buscarProducto() {
     let productoEncontrado = listaProductos.filter((producto) => producto.nombre.toLowerCase().includes(productoBuscado.value.toLowerCase()))
-    if (productoEncontrado.length == 0) {
-        alert("Producto no encontrado")
-        productoBuscado.value = ""
-    } else {
-        divProductos.innerHTML = ""
-        mostrarStock(productoEncontrado)
-    }
+    
+    productoEncontrado.length == 0 ? (alert("Producto no encontrado"))(productoBuscado.value = "") : (divProductos.innerHTML = "")(mostrarStock(productoEncontrado))   
+    
 }
 
 //FUNCION FILTRAR POR TIPO
-let filtrarTipo = document.getElementById("filtrarTipo")
+const filtrarTipo = document.getElementById("filtrarTipo")
 function filtrarPorTipo() {
     let tipoEncontrado = listaProductos.filter((tipo) => tipo.tipo.toLowerCase() == filtrarTipo.value.toLowerCase())
-    if (tipoEncontrado.length == 0) {
-        alert("No hay productos de ese tipo")
-    } else {
-        divProductos.innerHTML = ""
-        mostrarStock(tipoEncontrado)
-    }
+    tipoEncontrado.length == 0 ? alert("No hay productos de ese tipo") : (divProductos.innerHTML = "") (mostrarStock(tipoEncontrado))   
 }
 
 //BOTON MOSTRAR STOCK
-let btnMostrarStock = document.getElementById("mostrarStock")
-btnMostrarStock.addEventListener("click", () => {
+const btnMostrarStock = document.getElementById("mostrarStock")
+btnMostrarStock.addEventListener("click", (e) => {
+    e.preventDefault()
     mostrarStock(listaProductos)
 })
 
 //BOTON BUSCAR POR NOMBRE
-let btnBuscarPorNombre = document.getElementById("btnBuscar")
-btnBuscarPorNombre.addEventListener("click", () => {
+const btnBuscarPorNombre = document.getElementById("btnBuscar")
+btnBuscarPorNombre.addEventListener("click", (e) => {
+    e.preventDefault()
     buscarProducto()
     productoBuscado.value = ""
 })
 
 //BOTON FILTRA POR TIPO
-let btnFiltrarPorTipo = document.getElementById("btnFiltrar")
-btnFiltrarPorTipo.addEventListener("click", () => {
+const btnFiltrarPorTipo = document.getElementById("btnFiltrar")
+btnFiltrarPorTipo.addEventListener("click", (e) => {
+    e.preventDefault()
     filtrarPorTipo()
     filtrarTipo.value = ""
 })
 
 //DOM CARRITO
 
-let btnCarrito = document.getElementById("btnCar")
-let modalBody = document.getElementById("modalBody")
-let btnComprar = document.getElementById("btnBuy")
-let parrafoCompra = document.getElementById("pay")
+const btnCarrito = document.getElementById("btnCar")
+const modalBody = document.getElementById("modalBody")
+const btnComprar = document.getElementById("btnBuy")
+const parrafoCompra = document.getElementById("pay")
 let carritoEnJSON =[]
 
 btnCarrito.addEventListener("click", ()=>{        
@@ -153,8 +144,7 @@ function cargarCarrito(array) {
                     </div>
                 </div>
         `
-    })
-    //localStorage.setItem('carrito', JSON.stringify(array))
+    })    
     //Calcular el total
     totalProductos(array)
 }
@@ -163,11 +153,8 @@ function totalProductos (array){
     let acumulador = 0
     acumulador = array.reduce((acumulador, carritoArray)=>{
         return acumulador + carritoArray.precio
-    },0)
-    //console.log(`El total hasta ahora es: $${acumulador}`)
-    if(acumulador == 0){
-        parrafoCompra.innerHTML = "No hay productos en el carrito"
-    }else{
-        parrafoCompra.innerHTML = `El total de su carrito es $${acumulador}`
-    }    
+    },0)    
+    
+    // Con este operador ternario buscamos saber si hay o no productos en el carrito, si no hay, nos muestra la leyenda de que no hay producto, en cambio si hay productos, nos muestra el total de la compra.
+    acumulador == 0 ? parrafoCompra.innerHTML = "No hay productos en el carrito" : parrafoCompra.innerHTML = `El total de su carrito es $${acumulador}`      
 }
