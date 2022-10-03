@@ -1,3 +1,4 @@
+
 //Constructor
 class Producto {
     constructor(id, nombre, tipo, precio, img) {
@@ -60,7 +61,21 @@ function mostrarStock(array) {
         const btnComprar = document.getElementById(`btnComprar${producto.id}`)
         btnComprar.addEventListener("click", () => {
             agregarAlCarrito(producto)
-            alert("Producto agregado al carrito")
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 750,
+                timerProgressBar: false,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })              
+              Toast.fire({
+                icon: 'success',
+                title: 'Agregado al carrito'
+              })
         })        
     })
 }
@@ -72,8 +87,6 @@ function agregarAlCarrito(prod) {
 
 localStorage.setItem('carrito', JSON.stringify(carritoArray)) 
 
-//<script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
-
 //FUNCION BUSCAR POR NOMBRE
 
 const productoBuscado = document.getElementById("buscarProducto")
@@ -81,7 +94,10 @@ const productoBuscado = document.getElementById("buscarProducto")
 function buscarProducto() {
     let productoEncontrado = listaProductos.filter((producto) => producto.nombre.toLowerCase().includes(productoBuscado.value.toLowerCase()))
     
-    productoEncontrado.length == 0 ? (alert("Producto no encontrado"))(productoBuscado.value = "") : (divProductos.innerHTML = "")(mostrarStock(productoEncontrado))   
+    productoEncontrado.length == 0 ? (Swal.fire({    
+        icon: 'warning',
+        title: 'Titulo no encontrado',       
+      }))(productoBuscado.value = "") : (divProductos.innerHTML = "")(mostrarStock(productoEncontrado))   
     
 }
 
@@ -121,6 +137,7 @@ const btnCarrito = document.getElementById("btnCar")
 const modalBody = document.getElementById("modalBody")
 const btnComprar = document.getElementById("btnBuy")
 const parrafoCompra = document.getElementById("pay")
+const btnVaciarCarrito = document.getElementById("btnVaciar")
 let carritoEnJSON =[]
 
 btnCarrito.addEventListener("click", ()=>{        
@@ -157,4 +174,90 @@ function totalProductos (array){
     
     // Con este operador ternario buscamos saber si hay o no productos en el carrito, si no hay, nos muestra la leyenda de que no hay producto, en cambio si hay productos, nos muestra el total de la compra.
     acumulador == 0 ? parrafoCompra.innerHTML = "No hay productos en el carrito" : parrafoCompra.innerHTML = `El total de su carrito es $${acumulador}`      
+}
+
+btnVaciarCarrito.addEventListener('click', () => {vaciarCarrito()})
+
+function vaciarCarrito(){
+    if (carritoArray.length == 0){
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: false,            
+          })              
+          Toast.fire({
+            icon: 'warning',
+            title: 'No nay productos en el carrito'
+        })
+    }
+    else{
+        carritoArray = []
+        localStorage.removeItem('carrito')
+        swal.fire({
+            title: 'Carrito Vacío',
+            icon: 'info',
+            confirmButtonColor: "grey",
+            text: 'Se eliminaron todos los productos del carrito',                
+        })
+    }    
+}
+
+btnComprar.addEventListener("click", () => {finalizarCompra()})
+function finalizarCompra(){
+    //Alerta para consultar sobre la compra
+
+    //Si el carrito esta vacío va a dar una alerta de que el carrtio no tiene productos
+    if(carritoArray.length == 0){
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: false,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })              
+          Toast.fire({
+            icon: 'warning',
+            title: 'No nay productos en el carrito'
+        })
+    }
+    //Si el carrito tiene productos, va a consultar primero si quiere realizar la compra
+    else{    
+    swal.fire({
+        title: "Quiere realizar la siguiente compra",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        confirmButtonColor: "green",
+        cancelButtonColor: "red"
+    }).then((respuesta)=>{
+        //Si la respuesta es afirmativa va a resetear el carrito y finalizar la compra
+        if(respuesta.isConfirmed){
+            //Resetaer el carrito cuando se finaliza la compra
+            carritoArray = []
+            localStorage.removeItem('carrito')
+            //Alerta de compra realizada
+            swal.fire({
+                title: 'Compra realizada',
+                icon: 'success',
+                 confirmButtonColor: 'green',
+                text: 'Gracias por elegirnos',                
+            })            
+        }
+        //Si no realiza la compra el carrito va a quedar como esta y se le va a notificar por alerta
+        else{
+            swal.fire({
+                title: 'Compra no realizaa',
+                icon: 'error',
+                confirmButtonColor: 'green',
+                text: 'Los productos siguen en el carrito'
+            })
+        }               
+    })}
 }
