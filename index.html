@@ -9,6 +9,8 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <!--Sweet Alert-->
+
   <title>Ludomania</title>
 </head>
 
@@ -50,11 +52,12 @@
             </div>
             <div class="row m-1 font-monospace fw-bold">
               <p id="pay"></p>
-            </div>            
+            </div>
+            <div><button id="btnVaciar" type="button" class="btn btn-secondary m-3 p-1" data-bs-dismiss="modal">Vacíar Carrito</button> </div>           
             <!-- FOOTER MODAL -->
-            <div class="modal-footer">
+            <div class="modal-footer">              
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button id="btnBuy" type="button" class="btn btn-success">Comprar</button>
+              <button id="btnBuy" type="button" class="btn btn-success" data-bs-dismiss="modal">Comprar</button>
             </div>
 
           </div>
