@@ -1,3 +1,4 @@
+
 //Constructor
 class Producto {
     constructor(id, nombre, tipo, precio, img) {
@@ -71,8 +72,6 @@ function agregarAlCarrito(prod) {
 }
 
 localStorage.setItem('carrito', JSON.stringify(carritoArray)) 
-
-//<script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
 
 //FUNCION BUSCAR POR NOMBRE
 
