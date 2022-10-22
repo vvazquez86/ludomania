@@ -1,0 +1,131 @@
+[
+    {
+        "id": 1,
+        "nombre": "Cartas de Poker",       
+        "precio": 1200,
+        "imagen": "cartaspokerr.jpg",
+        "cantidad": 1
+                        
+    },
+    
+    {
+        "id": 2,
+        "nombre": "Cartas Españolas",        
+        "precio": 350,
+        "imagen": "cartasespaniolas.jpg",
+        "cantidad": 1
+    },
+    
+    {
+        "id": 3,
+        "nombre": "Malentin de 500 fichas",        
+        "precio": 15000,
+        "imagen": "maletin500.jpg",
+        "cantidad": 1                
+    },
+   
+    {
+        "id": 4,
+        "nombre": "Maletin de 200 fichas",        
+        "precio": 9000,
+        "imagen": "maletin200.jpg",
+        "cantidad": 1      
+    },
+    
+    {
+        "id": 5,
+        "nombre": "Monopolis",        
+        "precio": 5500,
+        "imagen": "monopoli.jpg",
+        "cantidad": 1       
+    },
+
+    {
+        "id": 6,
+        "nombre": "Estanciero",        
+        "precio": 6000,
+        "imagen": "estanciero.jpg",
+        "cantidad": 1      
+    },
+ 
+    {
+        "id": 7,
+        "nombre": "Batalla Naval",        
+        "precio": 8500,
+        "imagen": "batallanaval.jpg",
+        "cantidad": 1      
+    },    
+
+    {
+        "id": 8,
+        "nombre": "T.E.G.",        
+        "precio": 6890,
+        "imagen": "teg.jpg",
+        "cantidad": 1       
+    },
+
+    {
+        "id": 9,
+        "nombre": "El camararero",        
+        "precio": 5340,
+        "imagen": "elcamarero.jpg",
+        "cantidad": 1       
+    },
+
+    {
+        "id": 10,
+        "nombre": "Adivina a quien elijo",        
+        "precio": 1999,
+        "imagen": "adivinaquienelijo.jpg",
+        "cantidad": 1     
+    },
+
+    {
+        "id": 11,
+        "nombre": "Generala",        
+        "precio": 777,
+        "imagen": "generala.jpg",
+        "cantidad": 1       
+    },
+
+    {
+        "id": 12,
+        "nombre": "Frogy pit",        
+        "precio": 4386,
+        "imagen": "frog.jpg",
+        "cantidad": 1      
+    },
+
+    {
+        "id": 13,
+        "nombre": "Carrera de mente",        
+        "precio": 4518,
+        "imagen": "carreradementes.jpg",
+        "cantidad": 1       
+    },    
+
+    {
+        "id": 14,
+        "nombre": "Uno",        
+        "precio": 796,
+        "imagen": "uno.jpg",
+        "cantidad": 1      
+    },
+
+    {
+        "id": 15,
+        "nombre": "Escapa, el destino de londres",        
+        "precio": 2300,
+        "imagen": "escapa.jpg",
+        "cantidad": 1      
+    },
+
+    {
+        "id": 16,
+        "nombre": "Rapigrama Club",        
+        "precio": 2209,
+        "imagen": "rapigrama.jpg",
+        "cantidad": 1       
+    }
+]
+

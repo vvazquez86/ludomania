@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(238, 238, 240);
+    background-color: rgb(248, 249, 249); /*248, 249, 249 */
 }
 .titulos{    
     text-align: center;
@@ -9,7 +9,7 @@ body{
 }
 .productosEstilos{
     display: grid;
-    grid-template-columns: repeat(3,1fr);  
+    grid-template-columns: repeat(4,1fr);  
 }
 .card{
     margin: 1rem auto;    
@@ -20,4 +20,18 @@ body{
 .footer p{
     color: aliceblue;
     text-align: center;
+}
+.btntrash{
+    max-width: 50px;
+}
+.cantidadCarrito{
+    background-color: green;
+    color: white;    
+    border-radius: 50%;
+    font-size: 15px;
+    padding: 5px;
+    top: 37px;
+    right: 4px;
+    position: absolute;
+    display: none;
 }

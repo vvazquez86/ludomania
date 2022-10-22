@@ -8,4 +8,5 @@
     <li>CSS 3</li>
     <li>Bootstrap</li>
     <li>Javascript</li>
+    <li>Libreria SweetAlert2</li>
 </ul>
